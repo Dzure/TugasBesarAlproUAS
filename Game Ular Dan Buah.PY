@@ -150,13 +150,10 @@ while Ganabrak:
 
     # Tabrakan Dengan Perbatasan
     if kepala.xcor()>740 or kepala.xcor()<-740 or kepala.ycor()>365 or kepala.ycor()<-365:
-        wn.bgpic("game_over.gif")
+        
         
 
         turtle.pendown()
- 
-
-        
 
         #Efek Suara Menabrak Dinding
         tabrak_dinding = mixer.Sound('Crash.wav')
@@ -169,6 +166,13 @@ while Ganabrak:
         #Menyembunyikan Segmen
         for segment in segments:
             segment.goto(1000, 1000)
+
+        pen.clear()
+        
+        wn.bgpic("game_over.gif")
+
+        wn.update()
+        
     
 
         segments.clear()
