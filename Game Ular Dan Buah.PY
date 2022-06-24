@@ -150,6 +150,12 @@ while Ganabrak:
 
     # Tabrakan Dengan Perbatasan
     if kepala.xcor()>740 or kepala.xcor()<-740 or kepala.ycor()>365 or kepala.ycor()<-365:
+        wn.bgpic("game_over.gif")
+        
+
+        turtle.pendown()
+ 
+
         
 
         #Efek Suara Menabrak Dinding
@@ -175,6 +181,8 @@ while Ganabrak:
 
         pen.clear()
         pen.write("Skor: {}  Skor Tertinggi: {}".format(skor, skor_tertinggi), align="center", font=("MS Serif", 24, "normal")) 
+
+    
         
         
 
