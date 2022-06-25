@@ -2,12 +2,14 @@
 #Adiyatma Sadya Nugraha
 
 #Set UP
+from asyncore import write
 from tkinter import*
 import turtle
 import pygame
 from pygame import mixer
 import time
 import random
+from random import randrange
 
 splash_win= Tk()
 
@@ -130,6 +132,7 @@ try:
    wn.onkeypress(kebawah, "s")
    wn.onkeypress(kekiri, "a")
    wn.onkeypress(kekanan, "d")
+   
 except KeyError:
     print("Masukkan Keybindings Yang Sesuai")
 except TypeError:
@@ -150,29 +153,26 @@ while Ganabrak:
 
     # Tabrakan Dengan Perbatasan
     if kepala.xcor()>740 or kepala.xcor()<-740 or kepala.ycor()>365 or kepala.ycor()<-365:
-        
-        
+        pen.goto(0,0)
+        pen.write ("Game Over", align="center", font=("Times New Roman", 40, "bold"))
+        pen.goto(0,-50)
+        pen.write ("Tunggu 1 Detik Untuk Lanjut Kembali", align="center", font=("Times New Roman", 40, "bold"))
+        pen.goto(0,50)
+        pen.write ("Anda Menabrak Pembatas", align="center", font=("Times New Roman", 40, "bold"))
+        wn.update()
+ 
 
-        turtle.pendown()
-
-        #Efek Suara Menabrak Dinding
+        #Efek Suara Menabrak Dindingw
         tabrak_dinding = mixer.Sound('Crash.wav')
         tabrak_dinding.play()
       
         time.sleep(1)
         kepala.goto(0,0)
-        kepala.arah = "stop"
+        kepala.arah = "sberhenti"
 
         #Menyembunyikan Segmen
         for segment in segments:
             segment.goto(1000, 1000)
-
-        pen.clear()
-        
-        wn.bgpic("game_over.gif")
-
-        wn.update()
-        
     
 
         segments.clear()
@@ -184,6 +184,7 @@ while Ganabrak:
         delay = 0.1
 
         pen.clear()
+        pen.goto(0, 260)
         pen.write("Skor: {}  Skor Tertinggi: {}".format(skor, skor_tertinggi), align="center", font=("MS Serif", 24, "normal")) 
 
     
@@ -219,6 +220,7 @@ while Ganabrak:
             skor_tertinggi = skor
         
         pen.clear()
+        pen.goto(0, 260)
         pen.write("Skor: {}  Skor Tertinggi: {}".format(skor, skor_tertinggi), align="center", font=("MS Serif", 24, "normal")) 
 
     # Pindahkan segmen akhir terlebih dahulu dalam urutan terbalik
@@ -238,6 +240,13 @@ while Ganabrak:
     # Cek Jarak Kepala Ular dengan Segmen Badan
     for segment in segments:
         if segment.distance(kepala) < 20:
+            pen.goto(0,0)
+            pen.write ("Game Over", align="center", font=("Times New Roman", 40, "bold"))
+            pen.goto(0,-50)
+            pen.write ("Tunggu 1 Detik Untuk Lanjut Kembali", align="center", font=("Times New Roman", 40, "bold"))
+            pen.goto(0,50)
+            pen.write ("Anda Menabrak Bagian Tubuh Ular", align="center", font=("Times New Roman", 40, "bold"))
+            wn.update()
             time.sleep(1)
             kepala.goto(0,0)
             kepala.arah = "berhenti"
@@ -258,6 +267,7 @@ while Ganabrak:
         
             # Update Tampilan Skor
             pen.clear()
+            pen.goto(0, 260)
             pen.write("Skor: {}  Skor Tertinggi: {}".format(skor, skor_tertinggi), align="center", font=("MS Serif", 24, "normal"))
             
         
