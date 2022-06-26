@@ -162,7 +162,7 @@ while Ganabrak:
         wn.update()
  
 
-        #Efek Suara Menabrak Dindingw
+        #Efek Suara Menabrak Dinding
         tabrak_dinding = mixer.Sound('Crash.wav')
         tabrak_dinding.play()
       
